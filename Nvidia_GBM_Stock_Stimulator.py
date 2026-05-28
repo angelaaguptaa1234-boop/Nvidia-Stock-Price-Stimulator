@@ -14,7 +14,7 @@ ticker = yf.Ticker("NVDA")
 S0 = ticker.history(period="5d")["Close"].iloc[-1]
 # mu = the annual expected return
 # averaging daily returns then scaling it up to annual to determine mu
-# calculating daily returns than scaling it us because of law of large numbers
+# calculating daily returns than scaling it up because of law of large numbers
 data = yf.Ticker("NVDA").history(period="2y")["Close"]
 daily_returns = data.pct_change().dropna()
 mu = daily_returns.mean()*252
@@ -23,7 +23,7 @@ mu = daily_returns.mean()*252
 sigma = daily_returns.std()*np.sqrt(252)
 # T = the amount of time into the future the model predicts
 T = 1
-# dt = size of one time stem within the model (one day)
+# dt = size of one time step within the model (one day)
 dt = 1/252
 # n_simulations = number of different simulations
 n_simulations = 100
@@ -43,7 +43,7 @@ prices[0]= S0
 for t in range(1, n_steps):
     # Z = a random number from a standard deviation the provides "the shock"
     Z = np.random.standard_normal(n_simulations)
-    #GMB stock stimulator formula
+    # GMB stock stimulator formula
     prices[t] = prices[t-1] * np.exp((mu-0.5 * sigma ** 2) * dt  + sigma * np.sqrt(dt)*Z)
 
 # THE PLOT
