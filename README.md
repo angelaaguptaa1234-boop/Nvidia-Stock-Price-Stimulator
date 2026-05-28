@@ -1,37 +1,37 @@
 # Nvidia Stock Price Simulator
 
-A Monte Carlo stock price simulator built using Geometric Brownian Motion (GBM). The model pulls real market data via yfinance and simulates 100 possible trajectories for Nvidia's stock price over one trading year, using two years of historical data to derive model parameters.
+Built using Geometric Brownian Motion, this Monte Carlo stock price simulator is fed real market data and predicts the trajectory of Nvidia's stock price over 1 trading year. It simulates 100 possible paths the stock may take over the course of the year using historical data from the past 2 years.
 
 ## The Formula
 
 S_t = S_{t-1} * exp((mu - 0.5 * sigma^2) * dt + sigma * sqrt(dt) * Z)
 
 - **S0**: current stock price (live via yfinance)
-- **mu**: expected annual return (derived from 2y historical daily returns)
-- **sigma**: annual volatility (derived from 2y historical daily returns)
-- **dt**: 1/252 (one trading day as a fraction of a year)
-- **Z**: random shock drawn from a standard normal distribution
+- **mu**: expected annual return (calculated from 2y historical data)
+- **sigma**: annual volatility (calculated from 2y historical data)
+- **dt**: 1/252 (one trading day as fraction of year)
+- **Z**: random shock from standard normal distribution
 
 ## Strengths
 
-- Simple and interpretable implementation
-- Guarantees positive stock prices (a property of the exponential function)
-- Captures market randomness through Brownian motion
-- Generates multiple future price paths, enabling a probabilistic view of outcomes
+- Simple and easy to implement
+- Realistic (only produces positive stock prices)
+- Captures the market's randomness using Brownian motion
+- Predicts multiple future stock prices, allowing for a more comprehensive view of possible outcomes
 
-## Limitations
+## Weaknesses
 
-- Assumes constant volatility over time
-- Assumes constant expected return over time
-- Models continuous price movement — does not account for sudden crashes or market shocks
-- Assumes normally distributed returns, which understates the probability of extreme events
+- Assumes constant volatility
+- Assumes constant expected return
+- Assumes continuous movement, ignoring potential crashes or market booms
+- Assumes normal distribution of returns
 
-## Analysis
+## Overall Analysis
 
-A GBM simulator is only as good as its inputs. The model relies on assumptions — constant mu and sigma, normally distributed returns, continuous movement — that do not always hold in real markets. That said, GBM remains a foundational tool in quantitative finance precisely because it is tractable and interpretable. Rather than predicting a single outcome, it produces a distribution of possible futures, giving the viewer a probabilistic sense of where a stock price may go. It is best understood as a framework for thinking about risk and uncertainty, not a precise forecasting tool.
+A GBM stock simulator is fed various inputs which are all assumptions. These assumptions take away from the accuracy of the model. However, this does not mean the model is not useful — it can visually show the different paths a stock may go through, giving a holistic view of projected growth. The GBM model is not meant to be perfectly accurate, rather it provides a relatively good grasp of the trajectory the stock price is likely to go through.
 
 ## How to Run
 
 1. Clone the repo
-2. Install dependencies: pip install numpy matplotlib yfinance
+2. Install used libraries: pip install numpy matplotlib yfinance
 3. Run: python Nvidia_GBM_Stock_Stimulator.py
