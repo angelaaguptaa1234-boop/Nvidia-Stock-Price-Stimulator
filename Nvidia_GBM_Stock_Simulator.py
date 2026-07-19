@@ -26,7 +26,7 @@ T = 1
 # dt = size of one time step within the model (one day)
 dt = 1/252
 # n_simulations = number of different simulations
-n_simulations = 100
+n_simulations = 1,000
 
 # THE MODEL SET UP
 
